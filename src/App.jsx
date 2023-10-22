@@ -2,14 +2,16 @@ import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { recipe } from "./data";
+import { pinkSauce } from "./recipes/spaghettiPinkSauce";
 import "./App.css";
+import { Timer } from "./components/Timer";
 
 function App() {
   const [currentRecipeIndex, setCurrentRecipeIndex] = useState(0);
   const [currentDirectionIndex, setCurrentDirectionIndex] = useState(0);
   const [timer, setTimer] = useState(0);
 
-  const recipeProcess = recipe;
+  const recipeProcess = pinkSauce;
 
   const handleTracker = () => {
     const currentDirection =
@@ -27,8 +29,11 @@ function App() {
     };
 
     // Check if duration exists and set a timeout
-    if (currentDirection && typeof currentDirection.duration === "number") {
-      setTimeout(goToNextStep, currentDirection.duration * 1000); // assuming duration is in seconds
+    if (
+      currentDirection &&
+      typeof currentDirection.durationTimer === "number"
+    ) {
+      setTimeout(goToNextStep, currentDirection.durationTimer * 1000); // assuming duration is in seconds
     } else {
       goToNextStep();
     }
@@ -37,9 +42,12 @@ function App() {
 
   return (
     <>
-      <div>
-        {recipeProcess[currentRecipeIndex].direction[currentDirectionIndex].src}
-      </div>
+      <img
+        src={
+          recipeProcess[currentRecipeIndex].direction[currentDirectionIndex].src
+        }
+      />
+
       <div>
         <h1>{recipeProcess[currentRecipeIndex].recipeIngredient}</h1>
       </div>
