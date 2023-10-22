@@ -105,7 +105,7 @@ Recipe = {
         "chicken bouillon powder (1 tsp)",
         "Mix to combine",
       ],
-      amount: "2 clove",
+      amount: "",
       timer: null,
       complete: false,
     },
